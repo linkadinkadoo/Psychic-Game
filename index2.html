@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Psych-O-Rama</title>
+</head>
+
+<body>
+
+  <div id="game">
+    <p>Try and guess what letter I am thinking...</p>
+  </div>
+
+  <script type="text/javascript">
+
+    // Creates an array that lists out the letters of the alphabet
+    var computerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+    var wins = 0;
+    var guesses = 10;
+    var losses = 0;
+    
+
+    // This function is run whenever the user presses a key.
+    document.onkeyup = function(event) {
+
+      // Determines which key was pressed.
+      var userGuess = event.key;
+        // adds user's letter into an array
+      var guessedArray = [];
+      guessedArray.push(userGuess);
+
+        console.log(guessedArray);
+      // Randomly chooses a choice from the options array. This is the Computer's guess.
+      var letter = computerLetter[Math.floor(Math.random() * computerLetter.length)];
+ 
+
+      // only run the following block if user presses "r" or "p" or "s"
+    //   if ( (userGuess === "r") || (userGuess === "p") || (userGuess === "s") ) {
+
+
+        // user wins if they guess the right letter
+
+        if ( userGuess === letter ) {
+          wins++;
+        }
+
+        // user loses a guess if they are wrong
+
+        if ( userGuess != letter ) {
+          guesses--;
+        }
+
+        if(guesses === 0){
+            losses++, guesses = 10;
+        }
+        
+        console.log(guessedArray);
+        // after the game is played, update the html with the result
+        var resultHtml = 
+          "<p>Try and guess what letter I am thinking...</p>" +
+          "<p>You chose: " + userGuess + "</p>" +
+          "<p>Guessed letters: " + guessedArray.toString() + "</p>" +
+
+          "<p>Wins: " + wins + "</p>" +
+          "<p>Losses: " + losses + "</p>" +
+          "<p>Guesses Left: " + guesses + "</p>";
+
+        // select div with the id "game" and set html inside it
+        document.getElementById("game").innerHTML = resultHtml;
+        
+
+      };
+
+  </script>
+
+</body>
+
+</html>

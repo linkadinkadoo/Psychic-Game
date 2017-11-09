@@ -14,7 +14,6 @@
       <div class="box1"><h1>Zoltar Speaks</h1></div>
       <div class="box2" id="game1"></div>
       <div class="box3"><img src="assets/images/zoltar.jpg" id="pic">
-      <!-- <video src="assets/video/zoltar.mp4" frameborder="0" id="vid"></video> -->
       </div>
       <div class="box4" id="game2"></div>
       <div class="box5"><p>Try and guess what letter The Great Zoltar is thinking of...</p>
@@ -31,6 +30,8 @@
     var guessedArray = [];
     var winVideos =["zoltar-A.mp4", "zoltar-B.mp4", "zoltar-c.mp4"];
 
+    // random video choice
+    var vid = winVideos[Math.floor(Math.random() * winVideos.length)];
 
     // This function is run whenever the user presses a key.
     document.onkeyup = function(event) {
@@ -38,10 +39,8 @@
       // Determines which key was pressed.
       var userGuess = event.key;
         // adds user's letter into an array
-      
       guessedArray.push(" " + userGuess);
 
-        console.log(guessedArray);
       // Randomly chooses a choice from the options array. This is the Computer's guess.
       var letter = computerLetter[Math.floor(Math.random() * computerLetter.length)];
  
@@ -77,13 +76,8 @@
         //if wins = 1, an animation plays, the game is reset"
         //how do I keep track of the nubmer of wins for the if statement?
         if (wins > 0){
-          alert("You Win!!! Enjoy these words of wisdom from the Great Zoltar...");
-            function show() {  
-              document.getElementById('vid').className='visiblediv';  
-            }  
-            function close() {  
-              document.getElementById('pic').className='hiddendiv';  
-            }
+          alert("You Win!!!\n\nEnjoy these words of wisdom from the Great Zoltar...");
+            window.open("assets/video/"+vid);
           guessedArray=[];
           guesses=10;
           resultHtml01 = 
@@ -99,12 +93,6 @@
           //how do I keep track of the nubmer of losses for the if statement?
           if (losses === 1){
           alert("You Lose!!!\n\nZoltar is very angry with you!\n\nPlay again?");
-          function show() {  
-            document.getElementById('vid').className='visiblediv';  
-          }  
-          function close() {  
-            document.getElementById('pic').className='hiddendiv';  
-          }
           guessedArray=[];
           guesses=10;
           resultHtml01 = 

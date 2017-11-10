@@ -7,9 +7,19 @@
   <link href="https://fonts.googleapis.com/css?family=Aladin" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <script type="text/javascript" src="assets/javascript/game.js"></script>
 </head>
 
 <body>
+  <center>
+  <div id="videoBox">
+   <div id="videoWindow">
+      <video src="assets/video/zoltar-A.mp4" id="movie" style="width:70%;" controls></video>
+    </div>
+      <button onclick="closeVideo()" id="X">X</button>
+  </div>
+  </center>
+
   <div class="wrapper">
       <div class="box1"><h1>Zoltar Speaks</h1></div>
       <div class="box2" id="game1"></div>
@@ -19,112 +29,7 @@
       <div class="box5"><p>Try and guess what letter The Great Zoltar is thinking of...</p>
         <p>You have 10 guesses.</p><p>Press a letter key to begin.</p></div>
   </div>
-    
-  <script type="text/javascript">
-    // Creates an array that lists out the letters of the alphabet
-    var computerLetter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
-    var gameOver=0;
-    var wins = 0;
-    var guesses = 10;
-    var losses = 0;
-    var guessedArray = [];
-    var winVideos =["zoltar-A.mp4", "zoltar-B.mp4", "zoltar-c.mp4"];
 
-    // random video choice
-    var vid = winVideos[Math.floor(Math.random() * winVideos.length)];
-
-    // This function is run whenever the user presses a key.
-    document.onkeyup = function(event) {
-
-      // Determines which key was pressed.
-      var userGuess = event.key;
-        // adds user's letter into an array
-      guessedArray.push(" " + userGuess);
-
-      // Randomly chooses a choice from the options array. This is the Computer's guess.
-      var letter = computerLetter[Math.floor(Math.random() * computerLetter.length)];
- 
-        // user wins if they guess the right letter
-        if ( userGuess === letter ) {
-          wins++;
-        }
-        // user loses a guess if they are wrong
-        if ( userGuess != letter ) {
-          guesses--;
-        }
-        if(guesses === 0){
-            losses++;
-            gameOver=1;
-            guesses =10;
-        }
-        
-        // as the game is played, update the html with the result
-        var resultHtml01 = 
-          "<p>You chose: " + userGuess + "</p>" +
-          "<p>Guessed letters: </p><p>" + guessedArray.toString() + "</p>" +
-          "<p>Guesses Left: " + guesses + "</p>";
-
-        // select div with the id "game" and set html inside it
-        document.getElementById("game1").innerHTML = resultHtml01;
-
-        var resultHtml02 = 
-          "<p>Wins: " + wins + "</p>" +
-          "<p>Losses: " + losses + "</p>";
-
-        document.getElementById("game2").innerHTML = resultHtml02;
-
-        //if wins = 1, an animation plays, the game is reset"
-        //how do I keep track of the nubmer of wins for the if statement?
-        if (wins > 0){
-          alert("You Win!!!\n\nEnjoy these words of wisdom from the Great Zoltar...");
-            window.open("assets/video/"+vid);
-          guessedArray=[];
-          guesses=10;
-          resultHtml01 = 
-          "<p>You chose: " + userGuess + "</p>" +
-          "<p>Guessed letters: </p><p>" + guessedArray.toString() + "</p>" +
-          "<p>Guesses Left: " + guesses + "</p>";
-
-          // select div with the id "game1" and set html inside it
-          document.getElementById("game1").innerHTML = resultHtml01;
-        }
-        
-          //if losses = 1, an animation plays, the game is reset"
-          //how do I keep track of the nubmer of losses for the if statement?
-          if (losses === 1){
-          alert("You Lose!!!\n\nZoltar is very angry with you!\n\nPlay again?");
-          guessedArray=[];
-          guesses=10;
-          resultHtml01 = 
-          "<p>You chose: " + userGuess + "</p>" +
-          "<p>Guessed letters: </p><p>" + guessedArray.toString() + "</p>" +
-          "<p>Guesses Left: " + guesses + "</p>";
-
-          // select div with the id "game1" and set html inside it
-          document.getElementById("game1").innerHTML = resultHtml01;
-        }
-
-    // if (gameOver === 1) {
-    //     function show() {  
-    //         document.getElementById('vid').className='visiblediv';  
-    //     }  
-    //     function close() {  
-    //         document.getElementById('pic').className='hiddendiv';  
-    //     }   
-    // }
-    // else {
-    //     function show() {  
-    //         document.getElementById('vid').className='hiddendiv';  
-    //     }  
-    //     function close() {  
-    //         document.getElementById('pic').className='visiblediv';  
-    //     }
-    // }
-
-
-};
-
-  </script>
 
 </body>
 

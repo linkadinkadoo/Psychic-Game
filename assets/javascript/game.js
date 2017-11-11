@@ -22,7 +22,7 @@
 
 // This function is run whenever the user presses a key.
 document.onkeyup = function(event) {
-        
+        // debugger
       // Determines which key was pressed.
       var userGuess = event.key;
       console.log("userGuess: " + userGuess);
@@ -38,13 +38,13 @@ document.onkeyup = function(event) {
       if 
     //   (guessedArray.find(checkGuess)>1)
     //   (guessedArray[userGuess]>-1)
-      (checkGuess>-1)
+      (checkGuess!=-1)
       {
         window.alert("The Great Zoltar perceives that you have already guessed the letter " +userGuess+"\n\nTry again my friend.");
       }
       else{
         // adds user's letter into an array
-        guessedArray.push(" " + userGuess); 
+        guessedArray.push("" + userGuess); 
         console.log("guessedArray: "+guessedArray)      
       }
 
@@ -52,7 +52,9 @@ document.onkeyup = function(event) {
     if ( userGuess === letter ) {
       guesses=10;
       guessedArray=[];
+      userGuess="";
       totalWins=totalWins+1;
+
       secretLetter();
       console.log("Zoltar's letter is: " + letter);
       
@@ -74,6 +76,7 @@ document.onkeyup = function(event) {
         gameOver=1;
         guesses =10;
         guessedArray=[];
+        userGuess="";
         totalLosses=totalLosses+1;
         secretLetter();
         console.log("Zoltar's letter is: " + letter);
@@ -85,10 +88,15 @@ document.onkeyup = function(event) {
         alert("You Lose!!!\n\nZoltar is very angry with you!\n\nPlay again?");
     }
 
+        var processed=guessedArray.map(function(){
+            letter=" "+letter;
+            return letter;
+        })
+
       // updates the html with the guesses results
       var resultHtml01 = 
         "<p>You chose: " + userGuess + "</p>" +
-        "<p>Guessed letters: </p><p>" + guessedArray.toString() + "</p>" +
+        "<p>Guessed letters: </p><p>" + processed.toString() + "</p>" +
         "<p>Guesses Left: " + guesses + "</p>";
       // select div with the id "game" and set html inside it
       document.getElementById("game1").innerHTML = resultHtml01;

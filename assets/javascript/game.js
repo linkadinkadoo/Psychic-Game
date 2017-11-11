@@ -65,7 +65,12 @@ document.onkeyup = function(event) {
 
       alert("You Win!!!\n\nEnjoy these words of wisdom from the Great Zoltar...\n\nThen play again!");
       
+      //random 
       window.open("assets/video/"+vid);
+      
+      setTimeout(fuction({
+        window.close
+      }, 1000))
     }
 
     // user loses a guess if they are wrong

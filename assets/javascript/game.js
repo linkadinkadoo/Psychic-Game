@@ -68,10 +68,6 @@ document.onkeyup = function(event) {
       //random 
       window.open("assets/video/"+vid);
       
-      setTimeout(fuction({
-        window.close
-      }, 1000))
-    }
 
     // user loses a guess if they are wrong
     if ( userGuess != letter ) {

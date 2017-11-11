@@ -87,8 +87,8 @@ document.onkeyup = function(event) {
 
         alert("You Lose!!!\n\nZoltar is very angry with you!\n\nPlay again?");
     }
-
-        var processed=guessedArray.map(function(){
+        //puts spaces into the array to make it easier to read
+        var processed = guessedArray.map(function(letter){
             letter=" "+letter;
             return letter;
         })
